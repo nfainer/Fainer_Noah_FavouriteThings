@@ -1,22 +1,79 @@
-@import '_vars';
-@import 'modules/_navbar';
-@import 'modules/_users';
-@import 'modules/_lightbox';
+@import '_errors.scss';
+
+$main-color: white;
+$body-bg: #000;
+
+$heading-color: #333333;
+
 
 body {
     color: $main-color;
     background-color: $body-bg;
 }
 
-h1, h2, h3 { color: $heading-color }
+h1, h2, h3 { 
+    color: $heading-color;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-top: 15px;
+}
+
+p {
+    font-family: Helvetica;
+}
 
 .panel { min-height: 80vh; }
 
 .panel:nth-child(odd) {
-    background-color: salmon;
-    color: white;
+    background-color: #fff;
+    color: #000;
+    border-radius: 25px;
+}
+
+.box{
+    margin: 0 auto;
+    width: 75%;
+}
+
+.team { 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .user-panel {
+        flex: 0 1 200px;
+        text-align: center;
+        padding: 8px;
+        border: solid #000 7px;
+        border-radius: 25px;
+        margin: 25px;
+
+        .u-image { max-width: 200px; }
+
+        .u-link { 
+            display: block; 
+            //width: 150px;  
+            text-decoration: none;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+        }
+
+        h1, h3 { margin: 5px 0; }
+    }
+}
+
+
+@media screen and (min-width: 900px) {
+    .team {
+        .user-panel { 
+            flex: 1 1;
+
+            .u-image { max-width: 300px; }
+        }
+    }
 }
 
 #to-top { position: fixed; bottom: 10px; right: 10px; display: none; }
 
-@import 'modules/_footer'

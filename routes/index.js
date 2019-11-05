@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     // should really get the user data here and then fetch it thru, but let's try this asynchronously
     console.log('at the main route');
 
-    let query = "SELECT ID, avatar, Name, Logo, JobTitle FROM tbl_card";
+    let query = "SELECT ID, title, image, description, reason, link FROM tbl_favouriteThings";
 
     sql.query(query, (err, result) => {
         if (err) { throw err; console.log(err); }
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         // console.log(result); // should see objects wrapped in an array
 
         // render the home view with dynamic data
-        res.render('home' ,  { people: result });
+        res.render('home' ,  { item: result });
         
     })
 })
@@ -23,28 +23,29 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     console.log('hit a dynamic route!')
     console.log(req.params.id);
+    // res.render('errorPage')
 
 let query = `SELECT * FROM tbl_bio WHERE profID="${req.params.id}"`;
 
-sql.query(query, (err, result) => {
-    if (err) { throw err; console.log(err); }
+// sql.query(query, (err, result) => {
+//     if (err) { throw err; console.log(err); }
 
-    console.log(result); // should see objects wrapped in an array
+//     console.log(result); // should see objects wrapped in an array
 
-    // turn our social property into an array - its just text in the DB
-    // which isnt really anything we can work with
+//     // turn our social property into an array - its just text in the DB
+//     // which isnt really anything we can work with
     
     
-    result[0].social = result[0].social.split(",").map(function(item) {
-    item = item.trim(); // remove the extra spaces from each word
-    return item;
+//     result[0].social = result[0].social.split(",").map(function(item) {
+//     item = item.trim(); // remove the extra spaces from each word
+//     return item;
 
-    });
+//     });
 
-    // send the DB query back to the browser
-    res.json(result);
+//     // send the DB query back to the browser
+//     res.json(result);
     
-})
+// })
     
 })
 
